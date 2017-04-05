@@ -1,9 +1,9 @@
 /**
- * Title: Correlation
+ * Title: Project 5
  *
- * Description: Program calculates the correlation  
+ * Description: Program calculates the mean, standard deviation and variance, z-score, middle riemann sum, and normal distribution  
  *
- * @ Author: Tejal Deshpande
+ * @ Author: Tejal Deshpande, Grady Jenkins, Joe Gudzak
  * 
  * @ Version: 1.0
  *
@@ -25,13 +25,13 @@ public class project5 {
  	 
 	public static void main(String args[]) throws IOException {
 
-//		Scanner in = new Scanner(System.in);
-//		
-//		System.out.println("Specify an input file");
-//		
-//		String filename = in.nextLine();
+		Scanner in = new Scanner(System.in);
 		
-		Scanner sc = new Scanner(new File("Input"));
+		System.out.println("Specify an input file (enter 'Input')");
+		
+		String filename = in.nextLine();
+		
+		Scanner sc = new Scanner(new File(filename));
 
 //		sc.nextLine();
 //		sc.nextLine();
@@ -54,6 +54,7 @@ public class project5 {
 		
 		int count = 0;
 		
+		//instantiate mean variables
 		double sum_x = 0;
 		double sum_y = 0;
 		
@@ -62,13 +63,20 @@ public class project5 {
 		double mean_x = 0;
 		double mean_y = 0;
 		
+		//instantiate stdev variables
 		double total2 = 0;
 		double sum2 = 0;
         double stdev = 625.63;
         
+		//instantiate z-score variables
         double z_num = 0;
         double z_den = 0;	
         double z = 0;
+        
+		//instantiate riemann sum variables
+        int delta_x = 1;
+        double rectangle = 0;
+        double riemann_sum = 0;
 
 //return first element of each linked list
 		DoublyLinkedList.Node<Float> current_proxy = proxySize.getFirst();
@@ -93,29 +101,33 @@ public class project5 {
 			total_x += x;
 			total_y += y;
 			
+			//mean
 			mean_x = total_x/(count);
 			mean_y = total_y/(count);
 			
-
+			//std dev
 			double xmin = (x - 638.9);
-
 			sum2 = Math.pow((xmin), 2);
-
 	    	total2 += sum2;	    	        
 
 	    	//z-score
 	    	 z_num = (x - 638.9);
-	    	 z_den = stdev; 
-	    	 
-	    	 z = (z_num)/(z_den);
-	    	
+	    	 z_den = stdev; 	    	 
+	    	 z = (z_num)/(z_den);	    	
 	    	 System.out.println("z-score of " + x + " is: " + z);
+	    	 
+	    	 //middle riemann sum -> for function F(x) = 2x
+	    	 rectangle = 2*delta_x/2 ;
+	    	 riemann_sum += rectangle;
+	    	 delta_x+=2;
+	    	 
+	    	 
 			current_proxy = current_proxy.getNext(); // return next proxy node 
 			current_dev = current_dev.getNext(); // return next development node
 			
 		}
-
-		double final_mean_x = mean_x;
+		
+		System.out.println("The middle riemann sum is: " + riemann_sum);
 
     	total2 = total2/(count-1);
 
