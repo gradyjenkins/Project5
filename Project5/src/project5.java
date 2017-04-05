@@ -146,6 +146,8 @@ public class project5 {
 		//instantiate mean variables
 
 		
+		
+		
 		r = count * (xmulty) - (sum_x * sum_y);
 		double denominator;
 		denominator = count * x_square - (sum_x * sum_x);
@@ -156,7 +158,16 @@ public class project5 {
 		System.out.println("The value of r is: " + new DecimalFormat("#0.00000").format(r));
 		System.out.println("The value of r squared is: " + new DecimalFormat("#0.00000").format(r_square));
 
-
+		//normal distribution
+		double distribution = 0;
+		for(int i = 0; i <= count; i++)
+		{
+			double exponent;
+			double denominator2 = Math.sqrt(2*Math.PI);
+			exponent = (-0.5);
+			distribution = (1/denominator2)*(Math.pow(Math.E, exponent));
+		}
+		System.out.println("The normal distribution is: "+ distribution);
 	}
 
 }
